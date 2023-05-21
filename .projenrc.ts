@@ -4,6 +4,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'main',
   name: 'github-actions-cdk-poc',
   projenrcTs: true,
+  github: false,
 
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
