@@ -29,6 +29,8 @@ const devEnv = {
   // hoge
 };
 
+// ここもいらない
+
 const app = new App();
 
 new MyStack(app, 'yus-sakai-test', { env: devEnv });
