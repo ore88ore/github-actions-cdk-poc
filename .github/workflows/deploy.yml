@@ -14,6 +14,12 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::280107060642:role/yus-sakai-github-actions-test
           aws-region: ap-northeast-1
-      - name: connect aws cli
+      - name: setup Node.js v18.12.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
+      - name: setup yarn
+        run: npm i -g yarn
+      - name: install cdk dependencies
         run: |
-          aws s3 ls
+          yarn install --frozen-lockfile
