@@ -11,7 +11,7 @@ export class MyStack extends Stack {
           console.log('Hello, CDK!');
           return {
             statusCode: 200,
-            body: 'Lambda function executed successfully! - update',
+            body: 'Lambda function executed successfully!',
           };
         };
       `),
@@ -26,6 +26,7 @@ export class MyStack extends Stack {
 const devEnv = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
   region: process.env.CDK_DEFAULT_REGION,
+  // hoge
 };
 
 const app = new App();
