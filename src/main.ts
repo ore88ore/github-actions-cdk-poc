@@ -11,7 +11,7 @@ export class MyStack extends Stack {
           console.log('Hello, CDK!');
           return {
             statusCode: 200,
-            body: 'Lambda function executed successfully!',
+            body: 'Lambda function executed successfully! - update',
           };
         };
       `),
