@@ -23,3 +23,6 @@ jobs:
       - name: install cdk dependencies
         run: |
           yarn install --frozen-lockfile
+      - name: cdk deploy
+        run: |
+          yarn deploy
