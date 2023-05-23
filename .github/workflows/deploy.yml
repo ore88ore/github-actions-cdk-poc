@@ -22,9 +22,12 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         env:
-          AWS_ROLE: arn:aws:iam::280107060642:role/yus-sakai-github-actions-test
+          AWS_ROLE: {
+            "stg": "arn:aws:iam::280107060642:role/yus-sakai-github-actions-test",
+            "prd": "arn:aws:iam::280107060642:role/yus-sakai-github-actions-test"
+          }
         with:
-          role-to-assume: ${{ env.AWS_ROLE }}
+          role-to-assume: ${{ env.AWS_ROLE.${{ inputs.stage}} }}
           aws-region: ap-northeast-1
       - name: setup Node.js v18.12.1
         uses: actions/setup-node@v3
