@@ -24,7 +24,7 @@ jobs:
         env:
           AWS_ROLE: {
             "stg": "arn:aws:iam::280107060642:role/yus-sakai-github-actions-test",
-            "prd": "arn:aws:iam::280107060642:role/yus-sakai-github-actions-test"
+            "prd": "arn:aws:iam::xxx:role/yus-sakai-github-actions-test"
           }
         with:
           role-to-assume: ${{ env.AWS_ROLE.${{ inputs.stage}} }}
