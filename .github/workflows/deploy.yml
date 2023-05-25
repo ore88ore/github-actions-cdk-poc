@@ -21,7 +21,7 @@ jobs:
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: Print environment variables
-        run: echo ${{ vars }}
+        run: echo ${{ toJSON(vars) }}
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
