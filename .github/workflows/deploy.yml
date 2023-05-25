@@ -1,5 +1,15 @@
 name: deploy
-on: [ workflow_dispatch ]
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Please select a stage."
+        required: true
+        default: stg
+        type: choice
+        options:
+          - stg
+          - prd
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
@@ -12,7 +22,12 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::280107060642:role/yus-sakai-github-actions-test
+          role-to-assume: |
+            ${{ 
+              inputs.stage == 'prd'
+              && 'arn:aws:iam::xxxx:role/yus-sakai-github-actions-test'
+              || 'arn:aws:iam::280107060642:role/yus-sakai-github-actions-test'
+            }}
           aws-region: ap-northeast-1
       - name: setup Node.js
         uses: actions/setup-node@v3
@@ -23,4 +38,4 @@ jobs:
           yarn install --frozen-lockfile
       - name: cdk deploy
         run: |
-          yarn deploy
+          yarn deploy-${{ inputs.stage }}

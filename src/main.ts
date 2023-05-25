@@ -26,7 +26,10 @@ export class MyStack extends Stack {
 const devEnv = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
   region: process.env.CDK_DEFAULT_REGION,
+  // hoge
 };
+
+// ここもいらないです
 
 const app = new App();
 
