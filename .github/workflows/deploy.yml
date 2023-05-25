@@ -2,21 +2,21 @@ name: deploy
 on:
   workflow_dispatch:
     inputs:
-      stage:
-        description: "Please select a stage."
+      environment:
+        description: "Where to deploy."
         required: true
-        default: stg
+        default: staging
         type: choice
         options:
-          - stg
-          - prd
+          - staging
+          - production
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
 jobs:
   aws-test:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: ${{ environment.stage }}
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
@@ -36,4 +36,4 @@ jobs:
           yarn install --frozen-lockfile
       - name: cdk deploy
         run: |
-          yarn deploy-${{ inputs.stage }}
+          yarn deploy-${{ inputs.environment == 'production' && 'prd' || 'stg' }}
