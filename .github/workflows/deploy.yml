@@ -5,7 +5,13 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    environment: production
+    environment: stagint
     steps:
       - name: deploy
         run: echo 'deploy...'
+  lint:
+    runs-on: ubuntu-latest
+    environment: stagint
+    steps:
+      - name: lint
+        run: echo 'lint...'
