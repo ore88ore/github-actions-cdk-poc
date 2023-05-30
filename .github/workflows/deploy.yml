@@ -1,9 +1,10 @@
 name: Deployment
 
-on:
-  workflow_dispatch:
+on:[workflow_dispatch, push]
+
 jobs:
   deployment:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: staging
     needs: lint
