@@ -31,9 +31,9 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ $NODE_VERSION }}-${{ hashFiles('./yarn.lock') }}
+          key: ${{ runner.os }}-yarn-$NODE_VERSION-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-${{ $NODE_VERSION }}-
+            ${{ runner.os }}-yarn-$NODE_VERSION-
       - name: Confirm yarn
         run: yarn --version
   lint:
