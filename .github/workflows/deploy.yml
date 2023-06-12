@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.16.0
+      - name: Enable Yarn v3
+        working-directory: cdk
+        run: corepack enable
       - name: Confirm yarn
         run: yarn --version
   lint:
