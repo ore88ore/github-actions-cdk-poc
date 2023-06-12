@@ -4,6 +4,9 @@ on:
   workflow_dispatch: ~
   push: ~
 
+env:
+  NODE_VERSION: 18.16.0
+  
 jobs:
   deployment:
     if: github.event_name == 'workflow_dispatch'
@@ -16,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.16.0
+          node-version: $NODE_VERSION
       - name: Enable Yarn v3
         run: corepack enable && corepack prepare yarn@3.6.0 --activate
       - name: Get yarn cache directory path
@@ -28,9 +31,9 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-18.16.0-${{ hashFiles('./yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ $NODE_VERSION }}-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-18.16.0-
+            ${{ runner.os }}-yarn-${{ $NODE_VERSION }}-
       - name: Confirm yarn
         run: yarn --version
   lint:
