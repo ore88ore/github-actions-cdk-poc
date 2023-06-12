@@ -22,6 +22,8 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      - name: confirm dir
+        run: echo '${{ toJSON(steps.yarn-cache-dir-path.outputs) }}'
       - uses: actions/cache@v3
         id: yarn-cache
         with:
